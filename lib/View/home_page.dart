@@ -11,7 +11,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Recuperar Pessoa'),
+        title: const Text('Tela Principal'),
       ),
       body: Center(
         child: Column(
