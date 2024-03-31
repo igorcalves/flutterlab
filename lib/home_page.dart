@@ -1,40 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:learn/domain/user/user_ui.dart';
+import 'domain/regras_negocio/user_bloc.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class MyHomePage extends StatelessWidget {
+  final UserBloc userBloc;
 
-  @override
-  State<HomePage> createState() {
-    return HomePageState();
-  }
-}
+  const MyHomePage({super.key, required this.userBloc});
 
-class HomePageState extends State<HomePage> {
-  int counter = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Page'),
+        title: const Text('Recuperar Pessoa'),
       ),
       body: Center(
-        child: GestureDetector(
-          child: Text('Contador: $counter',
-              style: const TextStyle(fontSize: 20.0)),
-          onTap: () {
-            setState(() {
-              counter++;
-            });
-          },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => user_ui(
+                              userBloc: userBloc,
+                            )));
+              },
+              child: const Text('Buscas Usuarios por Cpf'),
+            ),
+          ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          setState(() {
-            counter++;
-          });
-        },
       ),
     );
   }
