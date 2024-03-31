@@ -1,20 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+void main() async {
+  var url = Uri.parse('http://192.168.56.1:8080/users');
+  var response = await http.get(url);
 
-  @override
-  Widget build(BuildContext context) {
-    var title = 'Web Images';
-
-    return MaterialApp(
-      title: title,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: Image.network('https://picsum.photos/250?image=11'),
-      ),
-    );
+  if (response.statusCode == 200) {
+    print('Response body: ${response.body}');
+  } else {
+    print('Request failed with status: ${response.statusCode}');
   }
 }

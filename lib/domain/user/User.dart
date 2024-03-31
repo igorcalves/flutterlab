@@ -29,6 +29,10 @@ class User {
     apartmentNumber = json['apartmentNumber'];
   }
 
+  static List<User> fromJsonList(List<dynamic>  jsonList) {
+    return jsonList.map((json) => User.fromJson(json)).toList();
+  }
+
   @override
   String toString() {
     return 'Name: $name\nCPF: $cpf\nPhone: $phone\nRole: $role\nEmail: $email\n '

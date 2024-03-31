@@ -5,10 +5,20 @@ import 'package:learn/repository/user_repository.dart';
 class UserBloc {
   final _userRepository = UserRepository();
   final _userController = StreamController<User?>.broadcast();
+  final _userListController = StreamController<List<User?>>.broadcast();
+
   final _errorController = StreamController<String>.broadcast();
 
   Stream<User?> get userStream => _userController.stream;
+  Stream<List<User?>> get userListStream => _userListController.stream;
+
   Stream<String> get errorStream => _errorController.stream;
+
+  void clearStreams() {
+    _userListController.sink.add([]); 
+    _userController.sink.add(null);   
+    _errorController.sink.add('');    
+  }
 
   void getUserByCPF(String cpf) async {
     var response = await _userRepository.getUserByCPF(cpf);
@@ -20,6 +30,16 @@ class UserBloc {
       _errorController.sink.add('');
     }
   }
+
+  void getUserByName(String data) async {
+
+    var response = await _userRepository.getUserName(data);
+    _userListController.sink.add(User.fromJsonList(response));
+
+  }
+  
+
+
 
   void dispose() {
     _userController.close();
