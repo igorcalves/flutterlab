@@ -11,8 +11,14 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Recuperar Pessoa',
-      theme:
-          ThemeData(brightness: Brightness.dark, primarySwatch: Colors.green),
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.green,
+          // ···
+          brightness: Brightness.light,
+        ),
+      ),
       home: MyHomePage(
         userBloc: UserBloc(FakeRepository(
           MyRepo.getData(),
