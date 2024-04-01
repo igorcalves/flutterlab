@@ -10,7 +10,7 @@ class InformationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Test"),
+        title: const Text("Dados Pessoais"),
       ),
       body: Padding(
         padding: EdgeInsets.all(20),
@@ -36,7 +36,7 @@ class InformationScreen extends StatelessWidget {
                   ),
                   SizedBox(width: 14), // Adiciona espaço entre a foto e o nome
                   Text(
-                    user.name!,
+                    user.getFirstNameAndLastName(),
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -48,7 +48,7 @@ class InformationScreen extends StatelessWidget {
               Text(
                 user.toString(),
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 14.5,
                   fontWeight: FontWeight.bold,
                 ),
               )
